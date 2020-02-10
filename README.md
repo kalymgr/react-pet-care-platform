@@ -1,3 +1,11 @@
+- In order for the create-react-app to properly create the template (no errors), use the following command:
+create-react-app confusion --scripts-version 1.1.5
+
+- Using JSON Server
+json-server --watch db_pet-care.json -p 3001 -d 2000
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
