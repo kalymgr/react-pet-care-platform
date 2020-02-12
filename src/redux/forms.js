@@ -5,10 +5,13 @@
  */
 export const InitialLostPetForm = {
     petFoundOrLost: '',  // decides if found or lost
-    name: '',
+    contactName: '',  // contact info
+    email: '',
+    petName: '',  //  pet info
     species: '',
     colors: '',
     age: '',
     area: '',
-    moreInfo: ''
+    moreInfo: '',
+    photo: ''
 }

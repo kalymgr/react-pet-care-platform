@@ -26,3 +26,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/*** My css code ***/
+
+/**
+* Modal window settings
+*/
+
+.modal-header {
+  background-color: #2298ce;
+  color: white; 
+}

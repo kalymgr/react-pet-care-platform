@@ -18,7 +18,7 @@ export const ConfigureStore = () => {
             {
                 // lostOrFoundPets: LostOrFoundPets,
                 ...createForms({
-                    submitLostPetInfo: InitialLostPetForm
+                    submitLostPetInfo: InitialLostPetForm  // the property is also the model name used when declaring the form
                 })
 
             }
