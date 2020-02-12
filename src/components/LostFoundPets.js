@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors, Field, controls} from 'react-redux-form';
+import * as formValidators from './formValidation';
 
+/**
+ * Get the validators needed for the form
+ */
+var required = formValidators.required;
+var minLength = formValidators.minLength;
+var maxLength = formValidators.maxLength;
+var validEmail = formValidators.validEmail;
+var myFormErrors  = formValidators.myFormErrors;
 
 
 /**
@@ -78,17 +87,58 @@ class LostFound extends Component {
                             <Row className="form-group">
                                 <Label for="contactName" sm={2}>Contact name</Label>
                                 <Col sm={4}>
-                                    <Control.text  model=".contactName" id="contactName" name="contactName" placeholder="Contact name" className="form-control" />
+                                    <Control.text  model=".contactName" id="contactName" name="contactName" placeholder="Contact name" className="form-control" 
+                                        validators = {{
+                                            required, minLength: minLength(3), maxLength: maxLength(40)
+                                        }}
+                                    />
+                                    {myFormErrors(
+                                        ".contactName",
+                                            {
+                                                required: 'Required. ',
+                                                minLength: 'Minimum length of 3 characters. ',
+                                                maxLength: 'Maximum length of 40 characters. '
+                                            }
+                                     )}
+                                    
                                 </Col>
                                 <Label for="email" sm={2}>Email</Label>
                                 <Col sm={4}>
-                                    <Control.text model=".email" id="email" name="email" placeholder="Email" className="form-control" />
+                                    <Control.text model=".email" id="email" name="email" placeholder="Email" className="form-control" 
+                                        validators = {{
+                                            validEmail, required
+                                        }}
+                                    />
+                                    <Errors 
+                                        className = "text-danger"
+                                        model = ".email"
+                                        show = "touched"
+                                        messages = {{
+                                            required: 'Required. ',
+                                            validEmail: 'Email not valid'
+                                        }}
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label for="petName" sm={2}>Pet name</Label>
                                 <Col sm={4}>
-                                    <Control.text model=".petName" id="petName" name="petName" placeholder="Pet name" className="form-control"/>
+                                    <Control.text model=".petName" id="petName" name="petName" placeholder="Pet name" className="form-control"
+                                        validators = {{
+                                            required, minLength: minLength(3), maxLength: maxLength(20)
+                                        }}
+                                    />
+                                    <Errors 
+                                        className = "text-danger"
+                                        model = ".petName"
+                                        show = "touched"
+                                        messages = {{
+                                            required: 'Required. ',
+                                            minLength: 'Minimum length of 3 characters. ',
+                                            maxLength: 'Maximum length of 20 characters. '
+                                        }}
+                                    />
+                                    
                                 </Col>
                                 <Label for="species" sm={2}>Species</Label>
                                 <Col sm={3}>
@@ -102,7 +152,19 @@ class LostFound extends Component {
                             <Row className="form-group">
                                 <Label for="colors" sm={2}>Colors</Label>
                                 <Col sm={4}>
-                                    <Control.text model=".colors" id="colors" name="colors" class="form-control" placeholder="Colors"></Control.text>
+                                    <Control.text model=".colors" id="colors" name="colors" class="form-control" placeholder="Colors" 
+                                        validators = {{
+                                            required
+                                        }}
+                                    />
+                                    <Errors 
+                                        className = "text-danger"
+                                        model = ".colors"
+                                        show = "touched"
+                                        messages = {{
+                                            required: 'Required'
+                                        }}
+                                    />
                                 </Col>
                                 <Label for="age" sm={2}>Age</Label>
                                 <Col sm={3}>
@@ -121,10 +183,13 @@ class LostFound extends Component {
                                     <Control.textarea model=".moreInfo" id="moreInfo" name="moreInfo" class="form-control" placeholder="More info..." rows="8" />
                                 </Col>
                             </Row>
-                            <Row className="form-group">
+                            <Row className="form-group align-items-center">
                                 <Label for="photo" sm={2}>Photo</Label>
-                                <Col sm={10}>
-                                    <Control.textarea model=".moreInfo" id="moreInfo" name="moreInfo" class="form-control" placeholder="More info..." rows="8" />
+                                <Col sm={2}>
+                                    <img class="img-thumbnail d-flex align-self-center" src="assets/pet_photo_placeholder.jpg" alt="Pet photo"></img>
+                                </Col>
+                                <Col sm={2}>
+                                    <Button color="secondary">Upload picture</Button>
                                 </Col>
                             </Row>
                             <Row className="form-group">
