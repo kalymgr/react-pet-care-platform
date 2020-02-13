@@ -36,6 +36,12 @@ class LostFound extends Component {
 
     handleSubmit(values)  {
         console.log('handleSubmit called');
+
+        // save the data in the redux store
+        this.props.postSubmitLostPetInfo(values);
+
+        // reset the form after submitting
+        this.props.resetSubmitLostPetInfo();  
     }
 
     /**
@@ -149,7 +155,7 @@ class LostFound extends Component {
                             <Row className="form-group">
                                 <Label for="colors" sm={2}>Colors</Label>
                                 <Col sm={4}>
-                                    <Control.text model=".colors" id="colors" name="colors" class="form-control" placeholder="Colors" 
+                                    <Control.text model=".colors" id="colors" name="colors" className="form-control" placeholder="Colors" 
                                         validators = {{
                                             required, minLength: minLength(3), maxLength: maxLength(40)
                                         }}
@@ -165,7 +171,7 @@ class LostFound extends Component {
                                 </Col>
                                 <Label for="age" sm={2}>Age</Label>
                                 <Col sm={3}>
-                                <Control.text model=".age" id="age" name="age" class="form-control" placeholder="Age" 
+                                <Control.text model=".age" id="age" name="age" className="form-control" placeholder="Age" 
                                     validators = {{
                                         isNumber, greaterOrEqualTo: greaterOrEqualTo(1)
                                     }}
@@ -182,7 +188,7 @@ class LostFound extends Component {
                             <Row className="form-group">
                                 <Label for="area" sm={2}>Area found</Label>
                                 <Col sm={10}>
-                                    <Control.text model=".area" id="area" name="area" class="form-control" placeholder="Area found" 
+                                    <Control.text model=".area" id="area" name="area" className="form-control" placeholder="Area found" 
                                         validators = {{
                                             maxLength: maxLength(50)
                                         }}
@@ -198,7 +204,7 @@ class LostFound extends Component {
                             <Row className="form-group">
                                 <Label for="moreInfo" sm={2}>More info</Label>
                                 <Col sm={10}>
-                                    <Control.textarea model=".moreInfo" id="moreInfo" name="moreInfo" class="form-control" placeholder="More info..." rows="8" 
+                                    <Control.textarea model=".moreInfo" id="moreInfo" name="moreInfo" className="form-control" placeholder="More info..." rows="8" 
                                         validators = {{
                                             maxLength: maxLength(250)
                                         }}
@@ -214,7 +220,7 @@ class LostFound extends Component {
                             <Row className="form-group align-items-center">
                                 <Label for="photo" sm={2}>Photo</Label>
                                 <Col sm={2}>
-                                    <img class="img-thumbnail d-flex align-self-center" src="assets/pet_photo_placeholder.jpg" alt="Pet photo"></img>
+                                    <img className="img-thumbnail d-flex align-self-center" src="assets/pet_photo_placeholder.jpg" alt="Pet photo"></img>
                                 </Col>
                                 <Col sm={2}>
                                     <Button color="secondary">Upload picture</Button>

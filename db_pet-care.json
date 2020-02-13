@@ -1,19 +1,32 @@
 {
-  "posts": [
+  "lostpetinfo": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "rex",
+      "species": "",
+      "colors": "brown",
+      "age": "",
+      "area": "kalymnos",
+      "moreInfo": "info about the pet",
+      "photo": "",
+      "date": "2020-02-13T06:39:01.563Z",
+      "id": 8
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "petFoundOrLost": "",
+      "contactName": "Michalis Tsougkranis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "aris",
+      "species": "cat",
+      "colors": "white, black",
+      "age": "2",
+      "area": "kalymnos",
+      "moreInfo": "nice cat!",
+      "photo": "",
+      "date": "2020-02-13T06:40:24.668Z",
+      "id": 9
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
