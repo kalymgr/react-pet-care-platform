@@ -1,5 +1,6 @@
 /**
- * This module contains the form validation functions, that will be used by the various rules
+ * This module contains the form validation functions, that will be used by the various rules.
+ * It also contains helper functions for the forms
  */
 
 import React, { Component } from 'react';
@@ -16,6 +17,12 @@ import { Errors} from 'react-redux-form';
 
  // email valid format
  export const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+
+ // field contains number
+ export const isNumber = (val) => !isNaN(Number(val));
+
+ // number greated or equal to
+ export const greaterOrEqualTo = (limit) => (val) => !val || (val >= limit);
 
 
  /**

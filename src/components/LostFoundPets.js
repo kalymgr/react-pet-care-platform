@@ -3,14 +3,19 @@ import { Breadcrumb, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors, Field, controls} from 'react-redux-form';
 import * as formValidators from './formValidation';
+import { PetSpeciesSelectBox } from './petParamComponents';
 
-/**
- * Get the validators needed for the form
- */
+
+
+ // Get the validators needed for the form
 var required = formValidators.required;
 var minLength = formValidators.minLength;
 var maxLength = formValidators.maxLength;
 var validEmail = formValidators.validEmail;
+var isNumber = formValidators.isNumber;
+var greaterOrEqualTo = formValidators.greaterOrEqualTo;
+
+// get the component that shows the errors
 var myFormErrors  = formValidators.myFormErrors;
 
 
@@ -109,15 +114,13 @@ class LostFound extends Component {
                                             validEmail, required
                                         }}
                                     />
-                                    <Errors 
-                                        className = "text-danger"
-                                        model = ".email"
-                                        show = "touched"
-                                        messages = {{
-                                            required: 'Required. ',
-                                            validEmail: 'Email not valid'
-                                        }}
-                                    />
+                                    {myFormErrors(
+                                        ".email",
+                                            {
+                                                required: 'Required. ',
+                                                validEmail: 'Email not valid'
+                                            }
+                                     )}
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -128,25 +131,19 @@ class LostFound extends Component {
                                             required, minLength: minLength(3), maxLength: maxLength(20)
                                         }}
                                     />
-                                    <Errors 
-                                        className = "text-danger"
-                                        model = ".petName"
-                                        show = "touched"
-                                        messages = {{
-                                            required: 'Required. ',
-                                            minLength: 'Minimum length of 3 characters. ',
-                                            maxLength: 'Maximum length of 20 characters. '
-                                        }}
-                                    />
+                                    {myFormErrors(
+                                        ".petName",
+                                            {
+                                                required: 'Required. ',
+                                                minLength: 'Minimum length of 3 characters. ',
+                                                maxLength: 'Maximum length of 20 characters. '
+                                            }
+                                     )}
                                     
                                 </Col>
                                 <Label for="species" sm={2}>Species</Label>
                                 <Col sm={3}>
-                                    <Control.select model=".species" name="species" className="form-control">
-                                        <option>dog</option>
-                                        <option>cat</option>
-                                        <option>other</option>
-                                    </Control.select>
+                                    <PetSpeciesSelectBox formModel=".species" />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -154,33 +151,64 @@ class LostFound extends Component {
                                 <Col sm={4}>
                                     <Control.text model=".colors" id="colors" name="colors" class="form-control" placeholder="Colors" 
                                         validators = {{
-                                            required
+                                            required, minLength: minLength(3), maxLength: maxLength(40)
                                         }}
                                     />
-                                    <Errors 
-                                        className = "text-danger"
-                                        model = ".colors"
-                                        show = "touched"
-                                        messages = {{
-                                            required: 'Required'
-                                        }}
-                                    />
+                                    {myFormErrors(
+                                        ".colors",
+                                            {
+                                                required: 'Required. ',
+                                                minLength: 'Minimum length of 3 characters. ',
+                                                maxLength: 'Maximum length of 40 characters. '
+                                            }
+                                     )}
                                 </Col>
                                 <Label for="age" sm={2}>Age</Label>
                                 <Col sm={3}>
-                                <Control.text model=".age" id="age" name="age" class="form-control" placeholder="Age"></Control.text>
+                                <Control.text model=".age" id="age" name="age" class="form-control" placeholder="Age" 
+                                    validators = {{
+                                        isNumber, greaterOrEqualTo: greaterOrEqualTo(1)
+                                    }}
+                                />
+                                {myFormErrors(
+                                        ".age",
+                                            {
+                                                isNumber: 'The field must contain a number. ',
+                                                greaterOrEqualTo: 'Must be greater or equal to 1. '
+                                            }
+                                     )}
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label for="area" sm={2}>Area found</Label>
                                 <Col sm={10}>
-                                    <Control.text model=".area" id="area" name="area" class="form-control" placeholder="Area found"></Control.text>
+                                    <Control.text model=".area" id="area" name="area" class="form-control" placeholder="Area found" 
+                                        validators = {{
+                                            maxLength: maxLength(50)
+                                        }}
+                                    />
+                                    {myFormErrors(
+                                        ".area",
+                                            {
+                                                maxLength: 'Maximum length of 50 characters. '
+                                            }
+                                     )}
                                 </Col>
                             </Row>
                             <Row className="form-group">
                                 <Label for="moreInfo" sm={2}>More info</Label>
                                 <Col sm={10}>
-                                    <Control.textarea model=".moreInfo" id="moreInfo" name="moreInfo" class="form-control" placeholder="More info..." rows="8" />
+                                    <Control.textarea model=".moreInfo" id="moreInfo" name="moreInfo" class="form-control" placeholder="More info..." rows="8" 
+                                        validators = {{
+                                            maxLength: maxLength(250)
+                                        }}
+                                    />
+                                    {myFormErrors(
+                                        ".moreInfo",
+                                            {
+                                                maxLength: 'Maximum length of 250 characters. '
+                                            }
+                                     )}
                                 </Col>
                             </Row>
                             <Row className="form-group align-items-center">
