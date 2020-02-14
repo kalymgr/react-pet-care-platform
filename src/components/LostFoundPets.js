@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Input, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody } from "reactstrap";
+import { Breadcrumb, Input, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody, CardImg, CardImgOverlay, Card, CardTitle } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors, Field, controls} from 'react-redux-form';
 import * as formValidators from './formValidation';
 import { PetSpeciesSelectBox } from './petParamComponents';
 import { Loading } from './LoadingComponent';
+import {baseUrl} from '../shared/baseUrl';
 
 
 
@@ -18,6 +19,53 @@ var greaterOrEqualTo = formValidators.greaterOrEqualTo;
 
 // get the component that shows the errors
 var myFormErrors  = formValidators.myFormErrors;
+
+
+/**
+ * Functional component for showing a pet info
+ */
+function PetInfo({pet}) {
+    return (
+        <Card key={pet.id}>
+            {
+                (() => {
+                    if (pet.photo) {
+                        return (<CardImg with="100%" src = {baseUrl + pet.photo} alt={pet.name} />)
+                    }
+                    else {
+                        return (<CardImg with="100%" src = {'assets/pet_photo_placeholder.jpg'} alt={pet.name} />)
+                    }
+                }
+                
+                
+                )()
+            }
+            
+            
+            <CardImgOverlay>
+        <CardTitle>Owner: {pet.contactName}, Colors: {pet.colors}</CardTitle>
+            </CardImgOverlay>
+        </Card>
+    )
+}
+
+
+/**
+ * Functional component that shows a list of lost/found pets
+ * @param {*} props 
+ */
+const PetList = (props) => {
+    const petList = props.lostPetsInfo.map((pet) => {
+        return (
+            <div key={pet.id} className="col-12 col-md-5 m-1">
+                <PetInfo pet={pet} />
+            </div>
+        )
+    });
+    return (
+        <div className="row">{petList}</div>
+    )
+}
 
 
 /**
@@ -251,7 +299,7 @@ class LostFound extends Component {
                         </ModalBody>
                     </Modal>
     
-                    
+                    <PetList lostPetsInfo={this.props.lostPetsInfo.lostPetsInfo} />
                 </div>
                 
             )
