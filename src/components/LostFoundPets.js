@@ -39,10 +39,10 @@ class LostFound extends Component {
         console.log('handleSubmit called');
 
         // save the data in the redux store
-        this.props.postSubmitLostPetInfo(values);
+        this.props.postSubmitLostPetsInfo(values);
 
         // reset the form after submitting
-        this.props.resetSubmitLostPetInfo();  
+        this.props.resetSubmitLostPetsInfo();  
         // reset the value of the petPhoto file input
         document.getElementById("petPhoto").value = ""
     }
@@ -86,7 +86,7 @@ class LostFound extends Component {
                         Submit pet info
                     </ModalHeader>
                     <ModalBody>
-                        <Form model="submitLostPetInfo" onSubmit={(values) => this.handleSubmit(values)}>
+                        <Form model="submitLostPetsInfo" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group align-items-center">
                                 
                                 <Col sm={{size:1, offset: 2}}>

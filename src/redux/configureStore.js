@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { createForms } from 'react-redux-form';
 import { InitialLostPetForm} from './forms';
-import { LostOrFoundPets } from './lostOrFoundPets';
+import { LostPetsInfo } from './lostOrFoundPets';
 
 
 /**
@@ -18,7 +18,7 @@ export const ConfigureStore = () => {
             {
                 // lostOrFoundPets: LostOrFoundPets,
                 ...createForms({
-                    submitLostPetInfo: InitialLostPetForm  // the property is also the model name used when declaring the form
+                    submitLostPetsInfo: InitialLostPetForm  // the property is also the model name used when declaring the form
                 })
 
             }

@@ -1,26 +1,30 @@
 import { baseUrl } from '../shared/baseUrl';
-
+import * as ActionTypes from './ActionTypes';
 
 
 /**
  * Function that sends to the json server the lost pet info, in order to be stored in the json file.
  * It also updates the redux store
- * @param {*} lostPetInfo 
+ * @param {*} lostPetsInfo 
  */
-export const postSubmitLostPetInfo = (lostPetInfo) => (dispatch) => {
+export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
     // add to the object the date it is inserted in the json db
-    lostPetInfo = Object.assign({}, {
-        ...lostPetInfo, date: new Date().toISOString()
+    lostPetsInfo = Object.assign({}, {
+        ...lostPetsInfo, date: new Date().toISOString()
     });
 
     // add the path to the object photo
-    var petPhoto = '/assets/images/lostfoundpets/' + lostPetInfo.photo[0].name;
-    lostPetInfo = Object.assign({}, {...lostPetInfo, photo: petPhoto})
+    if (lostPetsInfo.photo)  // if there is a pet photo
+    {
+        var petPhoto = '/assets/images/lostfoundpets/' + lostPetsInfo.photo[0].name;
+        lostPetsInfo = Object.assign({}, {...lostPetsInfo, photo: petPhoto});
+    }
+    
 
     // send the data to the json server
-    return fetch(baseUrl + 'lostpetinfo', {
+    return fetch(baseUrl + 'lostPetsInfo', {
         method: 'POST',
-        body: JSON.stringify(lostPetInfo),
+        body: JSON.stringify(lostPetsInfo),
         headers: {
             'Content-Type': 'application/json'
         },
@@ -46,3 +50,34 @@ export const postSubmitLostPetInfo = (lostPetInfo) => (dispatch) => {
         alert('Info about the pet could not be saved in our database\n' + error.message);
     })
 }
+
+
+/**
+ * Function that fetches the lost and found pets data from the json server. It updates the redux store
+ */
+export const fetchLostPetsInfo= () => (dispatch) => {
+    // show loading till data is fetched
+    dispatch(lostPetsInfoLoading(true));
+}
+
+/**
+ * Function used while loading pets data
+ */
+export const lostPetsInfoLoading = () => ({
+    type: ActionTypes.LOSTPETSINFO_LOADING
+})
+
+
+/**
+ * Function for case that fetching of lost found pets data failed
+ * @param {*} errmess  the error message
+ */
+export const lostPetsInfoFailed = (errmess) => ({
+    type: ActionTypes.LOSTPETSINFO_FAILED, 
+    payload: errmess
+})
+
+export const addLostPetsInfo = (lostPetsInfo) => ({
+    type: ActionTypes.ADD_LOSTPETSINFO,
+    payload: lostPetsInfo
+})

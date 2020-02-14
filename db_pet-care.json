@@ -1,5 +1,5 @@
 {
-  "lostpetinfo": [
+  "lostpetsinfo": [
     {
       "petFoundOrLost": "petLost",
       "contactName": "michalis",
@@ -97,6 +97,90 @@
       "photo": "/assets/images/lostfoundpets/lacta.jpg",
       "date": "2020-02-14T10:21:57.450Z",
       "id": 16
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "rex",
+      "species": "cat",
+      "colors": "white, black",
+      "age": "3",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/LOSTPETSINFO/lacta.jpg",
+      "date": "2020-02-14T10:40:03.254Z",
+      "id": 17
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "Michalis Tsougkranis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "aris",
+      "species": "dog",
+      "colors": "brown",
+      "age": "3",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/LOSTPETSINFO/rocky.jpg",
+      "date": "2020-02-14T10:41:31.502Z",
+      "id": 18
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "aris",
+      "species": "dog",
+      "colors": "white, black",
+      "age": "2",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/LOSTPETSINFO/rocky.jpg",
+      "date": "2020-02-14T10:44:26.689Z",
+      "id": 19
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "Michalis Tsougkranis",
+      "email": "mtsougranis@kalymnos.gr",
+      "petName": "aris",
+      "species": "dog",
+      "colors": "white, black",
+      "age": "3",
+      "area": "s",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/rocky.jpg",
+      "date": "2020-02-14T10:47:45.358Z",
+      "id": 20
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "Michalis Tsougkranis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "aris",
+      "species": "dog",
+      "colors": "white, black",
+      "age": "2",
+      "area": "",
+      "moreInfo": "",
+      "photo": "",
+      "date": "2020-02-14T10:49:32.203Z",
+      "id": 21
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "aris",
+      "species": "dog",
+      "colors": "brown",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "",
+      "date": "2020-02-14T10:54:43.179Z",
+      "id": 22
     }
   ]
 }

@@ -6,8 +6,8 @@
  * @param {*} state 
  * @param {*} action 
  */
-export const LostOrFoundPets = (
-    state = { isLoading: true, errMess: null, lostOrFoundPets: []}, action
+export const LostPetsInfo = (
+    state = { isLoading: true, errMess: null, lostPetsInfo: []}, action
 ) => {
 
 }
