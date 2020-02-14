@@ -58,6 +58,26 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
 export const fetchLostPetsInfo= () => (dispatch) => {
     // show loading till data is fetched
     dispatch(lostPetsInfoLoading(true));
+
+    // get the lost pets info from the json server
+    return fetch(baseUrl + 'lostpetsinfo')
+        .then(response => {
+            if (response.ok) {  //  server responded ok
+                return response;
+            }
+            else { // server responded with an error
+                var error = new Error('Error ' + response.status +': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {  // case the server hasn't responded
+            var errmess = new Error(error.message);
+            throw errmess;
+        }
+        ).then(response => response.json())
+        .then(lostPetsInfo => dispatch(addLostPetsInfo(lostPetsInfo)))  // update the redux store
+        .catch(error => dispatch(lostPetsInfoFailed(error.message)));
 }
 
 /**
@@ -77,6 +97,10 @@ export const lostPetsInfoFailed = (errmess) => ({
     payload: errmess
 })
 
+/**
+ * Function for updating the lost pets data in the redux store
+ * @param {*} lostPetsInfo 
+ */
 export const addLostPetsInfo = (lostPetsInfo) => ({
     type: ActionTypes.ADD_LOSTPETSINFO,
     payload: lostPetsInfo

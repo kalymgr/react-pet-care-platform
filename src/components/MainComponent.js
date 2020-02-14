@@ -5,7 +5,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import LostFound from './LostFoundPets';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
-import { postSubmitLostPetsInfo } from '../redux/ActionCreators';
+import { postSubmitLostPetsInfo, fetchLostPetsInfo } from '../redux/ActionCreators';
 
 /**
  * Mapping the state to the props
@@ -13,7 +13,7 @@ import { postSubmitLostPetsInfo } from '../redux/ActionCreators';
  */
 const mapStateToProps = state => {
     return {
-        lostpetinfo: state.lostpetinfo
+        lostpetsinfo: state.lostpetsinfo
     }
 }
 
@@ -24,11 +24,17 @@ const mapStateToProps = state => {
  */
 const mapDispatchToProps = dispatch => ({
     resetSubmitLostPetsInfo: () => { dispatch(actions.reset('submitLostPetsInfo')) },
-    postSubmitLostPetsInfo: (lostPetInfo) => { dispatch(postSubmitLostPetsInfo(lostPetInfo)) }
+    postSubmitLostPetsInfo: (lostPetsInfo) => { dispatch(postSubmitLostPetsInfo(lostPetsInfo)) },
+    fetchLostPetsInfo: () => {dispatch(fetchLostPetsInfo())}
 })
 
 
 class Main extends Component {
+
+    componentDidMount() {
+        this.props.fetchLostPetsInfo();
+    }
+
     render () {
         return (
             <div className = 'container'>
@@ -36,7 +42,8 @@ class Main extends Component {
                     <Switch location = { this.props.location }>
                         <Route exact path='/lostfoundpets' 
                             component = {() => 
-                                <LostFound  
+                                <LostFound 
+                                    lostPetsInfo = {this.props.lostpetsinfo} 
                                     resetSubmitLostPetsInfo={this.props.resetSubmitLostPetsInfo}
                                     postSubmitLostPetsInfo = { this.props.postSubmitLostPetsInfo }
                                 />

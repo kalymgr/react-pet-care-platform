@@ -181,6 +181,20 @@
       "photo": "",
       "date": "2020-02-14T10:54:43.179Z",
       "id": 22
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "rex",
+      "species": "dog",
+      "colors": "white, black",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/bugs.jpg",
+      "date": "2020-02-14T11:12:06.128Z",
+      "id": 23
     }
   ]
 }

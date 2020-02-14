@@ -16,7 +16,7 @@ export const ConfigureStore = () => {
     const store = createStore(
         combineReducers(
             {
-                // lostOrFoundPets: LostOrFoundPets,
+                lostpetsinfo: LostPetsInfo,
                 ...createForms({
                     submitLostPetsInfo: InitialLostPetForm  // the property is also the model name used when declaring the form
                 })
