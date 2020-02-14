@@ -27,6 +27,78 @@
       "photo": "",
       "date": "2020-02-13T06:40:24.668Z",
       "id": 9
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "rex",
+      "species": "",
+      "colors": "brown",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "",
+      "date": "2020-02-14T05:21:37.528Z",
+      "id": 10
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "rex",
+      "species": "",
+      "colors": "brown",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "",
+      "date": "2020-02-14T05:22:03.776Z",
+      "id": 11
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "rex",
+      "species": "",
+      "colors": "brown",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": [
+        {}
+      ],
+      "date": "2020-02-14T07:18:47.730Z",
+      "id": 12
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "aris",
+      "species": "",
+      "colors": "white, black",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": [],
+      "date": "2020-02-14T07:19:24.372Z",
+      "id": 13
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "aris",
+      "species": "",
+      "colors": "white, black",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/ar.jpeg",
+      "date": "2020-02-14T07:25:58.463Z",
+      "id": 14
     }
   ]
 }

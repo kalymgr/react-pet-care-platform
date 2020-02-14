@@ -13,6 +13,11 @@ export const postSubmitLostPetInfo = (lostPetInfo) => (dispatch) => {
         ...lostPetInfo, date: new Date().toISOString()
     });
 
+    // add the path to the object photo
+    var petPhoto = '/assets/images/lostfoundpets/' + lostPetInfo.photo[0].name;
+
+    lostPetInfo = Object.assign({}, {...lostPetInfo, photo: petPhoto})
+
     // send the data to the json server
     return fetch(baseUrl + 'lostpetinfo', {
         method: 'POST',

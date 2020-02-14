@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody } from "reactstrap";
+import { Breadcrumb, Input, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors, Field, controls} from 'react-redux-form';
 import * as formValidators from './formValidation';
@@ -32,6 +32,7 @@ class LostFound extends Component {
         this.state = {
             isPetModalOpen: false
         }
+
     }
 
     handleSubmit(values)  {
@@ -54,6 +55,7 @@ class LostFound extends Component {
     }
 
     render() {
+        
         return (
             <div className = "container">
                 <div className = "row">
@@ -219,11 +221,10 @@ class LostFound extends Component {
                             </Row>
                             <Row className="form-group align-items-center">
                                 <Label for="photo" sm={2}>Photo</Label>
-                                <Col sm={2}>
-                                    <img className="img-thumbnail d-flex align-self-center" src="assets/pet_photo_placeholder.jpg" alt="Pet photo"></img>
-                                </Col>
-                                <Col sm={2}>
-                                    <Button color="secondary">Upload picture</Button>
+                                <Col sm={8}>
+                                    <Control.input type = "file" model=".photo" name="photo" id="petPhoto" accept="image/jpeg, image/png" 
+                                        value={null}
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">

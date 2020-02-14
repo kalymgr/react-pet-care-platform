@@ -8,10 +8,10 @@ export const InitialLostPetForm = {
     contactName: '',  // contact info
     email: '',
     petName: '',  //  pet info
-    species: '',
+    species: 'dog',
     colors: '',
     age: '',
     area: '',
     moreInfo: '',
-    photo: ''
+    photo: ""
 }
