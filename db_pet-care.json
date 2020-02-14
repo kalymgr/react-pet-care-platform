@@ -59,22 +59,6 @@
     {
       "petFoundOrLost": "petLost",
       "contactName": "michalis",
-      "email": "mtsougranis@gmail.com",
-      "petName": "rex",
-      "species": "",
-      "colors": "brown",
-      "age": "",
-      "area": "",
-      "moreInfo": "",
-      "photo": [
-        {}
-      ],
-      "date": "2020-02-14T07:18:47.730Z",
-      "id": 12
-    },
-    {
-      "petFoundOrLost": "petLost",
-      "contactName": "michalis",
       "email": "tsoygran@hotmail.com",
       "petName": "aris",
       "species": "",
@@ -82,23 +66,37 @@
       "age": "",
       "area": "",
       "moreInfo": "",
-      "photo": [],
-      "date": "2020-02-14T07:19:24.372Z",
-      "id": 13
-    },
-    {
-      "petFoundOrLost": "petLost",
-      "contactName": "michalis",
-      "email": "tsoygran@hotmail.com",
-      "petName": "aris",
-      "species": "",
-      "colors": "white, black",
-      "age": "",
-      "area": "",
-      "moreInfo": "",
-      "photo": "/assets/images/lostfoundpets/ar.jpeg",
+      "photo": "/assets/images/lostfoundpets/rocky.jpg",
       "date": "2020-02-14T07:25:58.463Z",
       "id": 14
+    },
+    {
+      "petFoundOrLost": "petFound",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "rex",
+      "species": "cat",
+      "colors": "white, black",
+      "age": "",
+      "area": "",
+      "moreInfo": "aaaa",
+      "photo": "/assets/images/lostfoundpets/lacta.jpg",
+      "date": "2020-02-14T10:18:52.794Z",
+      "id": 15
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "michalis",
+      "email": "tsoygran@hotmail.com",
+      "petName": "rex",
+      "species": "cat",
+      "colors": "brown",
+      "age": "2",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/lacta.jpg",
+      "date": "2020-02-14T10:21:57.450Z",
+      "id": 16
     }
   ]
 }

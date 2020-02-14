@@ -43,6 +43,8 @@ class LostFound extends Component {
 
         // reset the form after submitting
         this.props.resetSubmitLostPetInfo();  
+        // reset the value of the petPhoto file input
+        document.getElementById("petPhoto").value = ""
     }
 
     /**
