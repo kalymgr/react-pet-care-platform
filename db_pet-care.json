@@ -1,6 +1,5 @@
 {
   "lostpetsinfo": [
-    
     {
       "petFoundOrLost": "petLost",
       "contactName": "Michalis Tsougkranis",
@@ -56,6 +55,104 @@
       "photo": "/assets/images/lostfoundpets/bugs.jpg",
       "date": "2020-02-14T11:12:06.128Z",
       "id": 23
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "stefanos",
+      "email": "stefanostsougrnais@gmail.com",
+      "petName": "lalou",
+      "species": "cat",
+      "colors": "white, red",
+      "age": "3",
+      "area": "asdsdsd",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/lacta.jpg",
+      "date": "2020-02-15T10:19:30.230Z",
+      "id": 24
+    },
+    {
+      "petFoundOrLost": "petFound",
+      "contactName": "evdoxia",
+      "email": "eva@gmail.com",
+      "petName": "lacta",
+      "species": "cat",
+      "colors": "white",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/lacta.jpg",
+      "date": "2020-02-15T10:25:23.691Z",
+      "id": 25
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "evdoxia",
+      "email": "eva@gmail.com",
+      "petName": "eri",
+      "species": "dog",
+      "colors": "eee",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/lacta.jpg",
+      "date": "2020-02-15T10:28:20.639Z",
+      "id": 26
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "evdoxia",
+      "email": "eva@gmail.com",
+      "petName": "eee2",
+      "species": "cat",
+      "colors": "eee",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "/assets/images/lostfoundpets/lacta.jpg",
+      "date": "2020-02-15T10:35:01.238Z",
+      "id": 27
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "evdoxia",
+      "email": "mtsougranis@gmail.com",
+      "petName": "lalou",
+      "species": "dog",
+      "colors": "white, red",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "",
+      "date": "2020-02-15T10:47:26.562Z",
+      "id": 28
+    },
+    {
+      "petFoundOrLost": "petFound",
+      "contactName": "michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "foivos",
+      "species": "dog",
+      "colors": "white, brown",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "",
+      "date": "2020-02-15T10:49:11.511Z",
+      "id": 29
+    },
+    {
+      "petFoundOrLost": "petLost",
+      "contactName": "stefanos",
+      "email": "tsoygran@hotmail.com",
+      "petName": "lalou",
+      "species": "dog",
+      "colors": "white, red",
+      "age": "",
+      "area": "",
+      "moreInfo": "",
+      "photo": "",
+      "date": 1581763915481,
+      "id": 30
     }
   ]
 }

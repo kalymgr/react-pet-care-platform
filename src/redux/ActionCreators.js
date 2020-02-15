@@ -10,7 +10,7 @@ import * as ActionTypes from './ActionTypes';
 export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
     // add to the object the date it is inserted in the json db
     lostPetsInfo = Object.assign({}, {
-        ...lostPetsInfo, date: new Date().toISOString()
+        ...lostPetsInfo, date: Date.now()
     });
 
     // add the path to the object photo
@@ -44,7 +44,8 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
     })  
     .then(response => response.json())
     .then(response => {
-        alert('Info about lost/found pet saved in our database\n' + JSON.stringify(response));
+        // alert('Info about lost/found pet saved in our database\n' + JSON.stringify(response));
+        dispatch(addLostPet(response));  // update the redux store
     })
     .catch (error => {
         alert('Info about the pet could not be saved in our database\n' + error.message);
@@ -104,4 +105,14 @@ export const lostPetsInfoFailed = (errmess) => ({
 export const addLostPetsInfo = (lostPetsInfo) => ({
     type: ActionTypes.ADD_LOSTPETSINFO,
     payload: lostPetsInfo
+})
+
+
+/**
+ * Function for adding a lost pet to the lost pet list
+ * @param {*} lostPet 
+ */
+export const addLostPet = (lostPet) => ({
+    type: ActionTypes.ADD_LOSTPET,
+    payload: lostPet
 })

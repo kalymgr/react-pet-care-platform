@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Input, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody, CardImg, CardImgOverlay, Card, CardTitle } from "reactstrap";
+import { Media, Breadcrumb, Input, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody, CardImg, CardImgOverlay, Card, CardTitle } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors, Field, controls} from 'react-redux-form';
 import * as formValidators from './formValidation';
@@ -26,26 +26,26 @@ var myFormErrors  = formValidators.myFormErrors;
  */
 function PetInfo({pet}) {
     return (
-        <Card key={pet.id}>
+        <Media key={pet.id}>
             {
                 (() => {
                     if (pet.photo) {
-                        return (<CardImg with="100%" src = {baseUrl + pet.photo} alt={pet.name} />)
+                        return (<Media left><img with="100%" src = {baseUrl + pet.photo} alt={pet.name} /></Media>)
                     }
                     else {
-                        return (<CardImg with="100%" src = {'assets/pet_photo_placeholder.jpg'} alt={pet.name} />)
+                        return (<Media left><img with="100%" src = {'assets/pet_photo_placeholder.jpg'} alt={pet.name} /></Media>)
                     }
                 }
-                
-                
                 )()
             }
             
-            
-            <CardImgOverlay>
-        <CardTitle>Owner: {pet.contactName}, Colors: {pet.colors}</CardTitle>
-            </CardImgOverlay>
-        </Card>
+            <Media body>
+                <Media heading>Contact name: {pet.contactName}</Media>
+                <p>Species: {pet.species}</p>
+                <p>Colors: {pet.colors}</p>
+                <p>Date: {new Date(pet.date).toLocaleDateString('el-GR')}</p>
+            </Media>
+        </Media>
     )
 }
 
@@ -57,7 +57,7 @@ function PetInfo({pet}) {
 const PetList = (props) => {
     const petList = props.lostPetsInfo.map((pet) => {
         return (
-            <div key={pet.id} className="col-12 col-md-5 m-1">
+            <div key={pet.id} className="col-12 col-md-12 m-1">
                 <PetInfo pet={pet} />
             </div>
         )
