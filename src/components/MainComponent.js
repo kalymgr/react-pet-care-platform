@@ -5,7 +5,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import LostFound from './LostFoundPets';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
-import { postSubmitLostPetsInfo, fetchLostPetsInfo } from '../redux/ActionCreators';
+import { postSubmitLostPetsInfo, fetchLostPetsInfo, fetchCounters } from '../redux/ActionCreators';
 
 /**
  * Mapping the state to the props
@@ -13,7 +13,8 @@ import { postSubmitLostPetsInfo, fetchLostPetsInfo } from '../redux/ActionCreato
  */
 const mapStateToProps = state => {
     return {
-        lostpetsinfo: state.lostpetsinfo
+        lostpetsinfo: state.lostpetsinfo,
+        counters: state.counters
     }
 }
 
@@ -25,7 +26,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     resetSubmitLostPetsInfo: () => { dispatch(actions.reset('submitLostPetsInfo')) },
     postSubmitLostPetsInfo: (lostPetsInfo) => { dispatch(postSubmitLostPetsInfo(lostPetsInfo)) },
-    fetchLostPetsInfo: () => {dispatch(fetchLostPetsInfo())}
+    fetchLostPetsInfo: () => {dispatch(fetchLostPetsInfo())},
+    fetchCounters: () => {dispatch(fetchCounters())}
 })
 
 
@@ -33,6 +35,7 @@ class Main extends Component {
 
     componentDidMount() {
         this.props.fetchLostPetsInfo();
+        this.props.fetchCounters();
     }
 
     render () {

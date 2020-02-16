@@ -1,4 +1,7 @@
 {
+  "counters": {
+    "lostPetsCounter": 11
+  },
   "lostpetsinfo": [
     {
       "petFoundOrLost": "petLost",
