@@ -18,7 +18,6 @@ const mapStateToProps = state => {
     }
 }
 
-
 /**
  * Function that makes actions available for use, by mapping them to props
  * @param {*} dispatch 
@@ -26,16 +25,16 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     resetSubmitLostPetsInfo: () => { dispatch(actions.reset('submitLostPetsInfo')) },
     postSubmitLostPetsInfo: (lostPetsInfo) => { dispatch(postSubmitLostPetsInfo(lostPetsInfo)) },
-    fetchLostPetsInfo: () => {dispatch(fetchLostPetsInfo())},
-    fetchCounters: () => {dispatch(fetchCounters())}
+    fetchLostPetsInfo: (pageNumber) => {dispatch(fetchLostPetsInfo(pageNumber))},
+    // fetchCounters: () => {dispatch(fetchCounters())}
 })
 
 
 class Main extends Component {
 
     componentDidMount() {
-        this.props.fetchLostPetsInfo();
-        this.props.fetchCounters();
+        this.props.fetchLostPetsInfo(1);  // fetch the first page of results (10 results)
+        // this.props.fetchCounters();
     }
 
     render () {
@@ -49,6 +48,8 @@ class Main extends Component {
                                     lostPetsInfo = {this.props.lostpetsinfo} 
                                     resetSubmitLostPetsInfo={this.props.resetSubmitLostPetsInfo}
                                     postSubmitLostPetsInfo = { this.props.postSubmitLostPetsInfo }
+                                    fetchLostPetsInfo = { this.props.fetchLostPetsInfo }
+                                    pageNumber = {this.props.lostpetsinfo.pageNumber}
                                 />
                             } 
                         />

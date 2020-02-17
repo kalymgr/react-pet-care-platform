@@ -5,7 +5,6 @@ import logger from 'redux-logger';
 import { createForms } from 'react-redux-form';
 import { InitialLostPetForm} from './forms';
 import { LostPetsInfo } from './lostOrFoundPets';
-import { Counters } from './counters';
 
 
 /**
@@ -18,7 +17,6 @@ export const ConfigureStore = () => {
         combineReducers(
             {
                 lostpetsinfo: LostPetsInfo,
-                counters: Counters,
                 ...createForms({
                     submitLostPetsInfo: InitialLostPetForm  // the property is also the model name used when declaring the form
                 })

@@ -56,16 +56,20 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
 /**
  * Function that fetches the lost and found pets data from the json server. It updates the redux store
  * By default, it fetches the first page of data (first 10 results)
- * @param page The page of results fetched
+ * @param pageNumber The page of results fetched
  */
-export const fetchLostPetsInfo= (page = 1) => (dispatch) => {
+export const fetchLostPetsInfo= (pageNumber = 1) => (dispatch) => {
     // show loading till data is fetched
     dispatch(lostPetsInfoLoading(true));
 
     // get the lost pets info from the json server
-    return fetch(baseUrl + 'lostpetsinfo' + '?_page=' + page)
+    return fetch(baseUrl + 'lostpetsinfo' + '?_page=' + pageNumber)
         .then(response => {
             if (response.ok) {  //  server responded ok
+                console.log('Response headers');
+                
+                
+                console.log(getResponseLinkHeader(response));
                 return response;
             }
             else { // server responded with an error
@@ -79,9 +83,27 @@ export const fetchLostPetsInfo= (page = 1) => (dispatch) => {
             throw errmess;
         }
         ).then(response => response.json())
-        .then(lostPetsInfo => dispatch(addLostPetsInfo(lostPetsInfo)))  // update the redux store
+        .then(lostPetsInfo => dispatch(addLostPetsInfo(lostPetsInfo, pageNumber)))  // update the redux store
         .catch(error => dispatch(lostPetsInfoFailed(error.message)));
 }
+
+
+/**
+ * Function that takes the fetch response object and extracts the content of the link header
+ * @param response the fetch Response object
+ * @returns result the link header content
+ */
+const getResponseLinkHeader = (response) => {
+    let resHeaders = [...response.headers];  // spread the response headers in an array
+    let result = null;
+    for (let i=0; i<resHeaders.length;i++) {  // search for the link header
+        // console.log(resHeaders[i][0]);
+        if (resHeaders[i][0] == "link")
+            result = resHeaders[i][1];  // set the link header content as the result
+    }
+    return result;
+}
+
 
 /**
  * Function used while loading pets data
@@ -103,10 +125,13 @@ export const lostPetsInfoFailed = (errmess) => ({
 /**
  * Function for updating the lost pets data in the redux store
  * @param {*} lostPetsInfo 
+ * @param pageNumber the number of page of data fetched from server
  */
-export const addLostPetsInfo = (lostPetsInfo) => ({
+export const addLostPetsInfo = (lostPetsInfo, pageNumber) => ({
     type: ActionTypes.ADD_LOSTPETSINFO,
-    payload: lostPetsInfo
+    payload: {
+        lostPetsInfo, pageNumber
+    }
 })
 
 
@@ -117,47 +142,4 @@ export const addLostPetsInfo = (lostPetsInfo) => ({
 export const addLostPet = (lostPet) => ({
     type: ActionTypes.ADD_LOSTPET,
     payload: lostPet
-})
-
-/**
- * Function that fetches the counters of data that are stored in json server
- * @param {*} dispatch 
- */
-export const fetchCounters = (dispatch) => {
-    return fetch (baseUrl + 'counters')
-    .then(response => {
-        if (response.ok) {  // server answered ok
-            return response;
-        }
-        else {  // server responded with error
-            var error = new Error('Error ' + response.status + ': ' + response.statusText);
-            error.response = response;
-            throw error;            
-        }
-    },
-    error => {  // case the server hasn't responded
-        var errmess = new Error(error.message);
-        throw errmess;
-    })
-    .then(response => response.json())
-    .then(counters => dispatch(addCounters(counters)))  // updating the redux store
-    .catch(error => dispatch(countersFailed(error.message)));
-}
-
-/**
- * Function for updating the counters of the data
- * @param {*} counters 
- */
-export const addCounters = (counters) => ({
-    type: ActionTypes.ADD_COUNTERS,
-    payload: counters
-})
-
-/**
- * Function for the case that counters fetching failed
- * @param {*} errmess 
- */
-export const countersFailed = (errmess) => ({
-    type: ActionTypes.COUNTERS_FAILED,
-    payload: errmess
 })

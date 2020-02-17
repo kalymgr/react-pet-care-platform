@@ -6,7 +6,7 @@ import * as formValidators from './formValidation';
 import { PetSpeciesSelectBox } from './petParamComponents';
 import { Loading } from './LoadingComponent';
 import {baseUrl} from '../shared/baseUrl';
-
+import { Pagination } from './PaginationComponent';
 
 
  // Get the validators needed for the form
@@ -300,6 +300,10 @@ class LostFound extends Component {
                     </Modal>
     
                     <PetList lostPetsInfo={this.props.lostPetsInfo.lostPetsInfo} />
+                    <Pagination 
+                        getDataPage = {this.props.fetchLostPetsInfo}
+                        pageNumber = {this.props.pageNumber}
+                    />
                 </div>
                 
             )
