@@ -50,6 +50,7 @@ class Main extends Component {
                                     postSubmitLostPetsInfo = { this.props.postSubmitLostPetsInfo }
                                     fetchLostPetsInfo = { this.props.fetchLostPetsInfo }
                                     pageNumber = {this.props.lostpetsinfo.pageNumber}
+                                    lastPageNumber = {this.props.lostpetsinfo.lastPageNumber}
                                 />
                             } 
                         />

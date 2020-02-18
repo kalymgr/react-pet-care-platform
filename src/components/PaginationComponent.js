@@ -37,6 +37,8 @@ export class Pagination extends Component {
     render() {
         if (this.props.pageNumber == 1)  // case of first page. Previous page button must be disabled.
             this.prevPageButtonDisabled = true;
+        if (this.props.lastPageNumber == this.props.pageNumber)  // case of the last page. Next page button must be disabled
+            this.nextPageButtonDisabled = true;
         return (
             <div className="row">
                 <div className="col-12">

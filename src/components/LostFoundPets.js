@@ -303,6 +303,7 @@ class LostFound extends Component {
                     <Pagination 
                         getDataPage = {this.props.fetchLostPetsInfo}
                         pageNumber = {this.props.pageNumber}
+                        lastPageNumber = {this.props.lastPageNumber}
                     />
                 </div>
                 

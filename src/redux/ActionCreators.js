@@ -61,15 +61,13 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
 export const fetchLostPetsInfo= (pageNumber = 1) => (dispatch) => {
     // show loading till data is fetched
     dispatch(lostPetsInfoLoading(true));
+    let lastPageNumber = 1;  // initialize last page number
 
     // get the lost pets info from the json server
     return fetch(baseUrl + 'lostpetsinfo' + '?_page=' + pageNumber)
         .then(response => {
-            if (response.ok) {  //  server responded ok
-                console.log('Response headers');
-                
-                
-                console.log(getResponseLinkHeader(response));
+            if (response.ok) {  //  server responded ok 
+                lastPageNumber =  getLastPageNumberFromLinkHeader(response);  // set the last page number
                 return response;
             }
             else { // server responded with an error
@@ -83,7 +81,7 @@ export const fetchLostPetsInfo= (pageNumber = 1) => (dispatch) => {
             throw errmess;
         }
         ).then(response => response.json())
-        .then(lostPetsInfo => dispatch(addLostPetsInfo(lostPetsInfo, pageNumber)))  // update the redux store
+        .then(lostPetsInfo => dispatch(addLostPetsInfo(lostPetsInfo, pageNumber, lastPageNumber)))  // update the redux store
         .catch(error => dispatch(lostPetsInfoFailed(error.message)));
 }
 
@@ -91,7 +89,7 @@ export const fetchLostPetsInfo= (pageNumber = 1) => (dispatch) => {
 /**
  * Function that takes the fetch response object and extracts the content of the link header
  * @param response the fetch Response object
- * @returns result the link header content
+ * @returns result the link header content (null if the link header does not exist)
  */
 const getResponseLinkHeader = (response) => {
     let resHeaders = [...response.headers];  // spread the response headers in an array
@@ -102,6 +100,23 @@ const getResponseLinkHeader = (response) => {
             result = resHeaders[i][1];  // set the link header content as the result
     }
     return result;
+}
+
+/**
+ * Function that get the number of the last page, from the link header response
+ * @param {*} response the response object
+ * @returns the number of the last page of data
+ */
+const getLastPageNumberFromLinkHeader = (response) => {
+    // get the link header
+    let linkHeader = getResponseLinkHeader(response);
+    // get the page number from the link header
+    let linksList = linkHeader.split(',');
+    let lastPageLink = linksList[linksList.length-1].split(';')[0];
+    let pageParameter = lastPageLink.split('?')[1].trim();
+    let pageNo = pageParameter.split('=')[1].substr(0,1);
+
+    return pageNo;
 }
 
 
@@ -126,11 +141,12 @@ export const lostPetsInfoFailed = (errmess) => ({
  * Function for updating the lost pets data in the redux store
  * @param {*} lostPetsInfo 
  * @param pageNumber the number of page of data fetched from server
+ * @param lastPageNumber the number of the last page of data from the server
  */
-export const addLostPetsInfo = (lostPetsInfo, pageNumber) => ({
+export const addLostPetsInfo = (lostPetsInfo, pageNumber, lastPageNumber) => ({
     type: ActionTypes.ADD_LOSTPETSINFO,
     payload: {
-        lostPetsInfo, pageNumber
+        lostPetsInfo, pageNumber, lastPageNumber
     }
 })
 
