@@ -6,6 +6,7 @@ import LostFound from './LostFoundPets';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 import { postSubmitLostPetsInfo, fetchLostPetsInfo, fetchCounters } from '../redux/ActionCreators';
+import { PetDetails } from './PetDetailsComponent';
 
 /**
  * Mapping the state to the props
@@ -53,6 +54,9 @@ class Main extends Component {
                                     lastPageNumber = {this.props.lostpetsinfo.lastPageNumber}
                                 />
                             } 
+                        />
+                        <Route exact path = '/lostfoundpets/:petId' 
+                            component = {({match}) => <PetDetails match={match}  />} />} 
                         />
                     </Switch>
 
