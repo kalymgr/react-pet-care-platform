@@ -40,7 +40,10 @@ function PetInfo({pet}) {
             }
             
             <Media body>
+                <Link to={`/lostfoundpets/${pet.id}`}>
                 <Media heading>Contact name: {pet.contactName}</Media>
+                </Link>
+                
                 <p>Species: {pet.species}</p>
                 <p>Colors: {pet.colors}</p>
                 <p>Date: {new Date(pet.date).toLocaleDateString('el-GR')}</p>

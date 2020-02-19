@@ -43,6 +43,7 @@ class Main extends Component {
             <div className = 'container'>
                 <Header />
                     <Switch location = { this.props.location }>
+                        /* Route for page of lost and found pets */
                         <Route exact path='/lostfoundpets' 
                             component = {() => 
                                 <LostFound 
@@ -55,8 +56,9 @@ class Main extends Component {
                                 />
                             } 
                         />
+                        /* Route for single pet */
                         <Route exact path = '/lostfoundpets/:petId' 
-                            component = {({match}) => <PetDetails match={match}  />} />} 
+                            component = {({match}) => <PetDetails match={match} lostPetsInfo = {this.props.lostpetsinfo} />} />} 
                         />
                     </Switch>
 
