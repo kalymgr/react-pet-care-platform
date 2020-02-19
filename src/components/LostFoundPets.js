@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Media, Breadcrumb, Input, BreadcrumbItem, Button, Row, Col, Label, ModalHeader, Modal, ModalBody, CardImg, CardImgOverlay, Card, CardTitle } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { Control, Form, Errors, Field, controls} from 'react-redux-form';
+import {Form as ReactstrapForm} from 'reactstrap';  // use alias so as not to conflict with form from react-redux-form
 import * as formValidators from './formValidation';
 import { PetSpeciesSelectBox } from './petParamComponents';
 import { Loading } from './LoadingComponent';
@@ -141,6 +142,13 @@ class LostFound extends Component {
                                 <span className = "fa fa-pencil fa-lg"></span>
                                 Submit lost/found pet
                             </Button>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-12">
+                            <ReactstrapForm>
+                                
+                            </ReactstrapForm>
                         </div>
                     </div>
                     <Modal className="modal-lg" isOpen = {this.state.isPetModalOpen} toggle = {this.togglePetModal}>
