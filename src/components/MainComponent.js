@@ -26,7 +26,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     resetSubmitLostPetsInfo: () => { dispatch(actions.reset('submitLostPetsInfo')) },
     postSubmitLostPetsInfo: (lostPetsInfo) => { dispatch(postSubmitLostPetsInfo(lostPetsInfo)) },
-    fetchLostPetsInfo: (pageNumber) => {dispatch(fetchLostPetsInfo(pageNumber))},
+    fetchLostPetsInfo: (pageNumber, extraURLParams) => {dispatch(fetchLostPetsInfo(pageNumber, extraURLParams))},
     // fetchCounters: () => {dispatch(fetchCounters())}
 })
 

@@ -88,6 +88,10 @@ class LostFound extends Component {
 
     }
 
+    /**
+     * Method when a new lost/found pet info is submitted
+     * @param {*} values 
+     */
     handleSubmit(values)  {
         console.log('handleSubmit called');
 
@@ -98,6 +102,40 @@ class LostFound extends Component {
         this.props.resetSubmitLostPetsInfo();  
         // reset the value of the petPhoto file input
         document.getElementById("petPhoto").value = ""
+    }
+
+    /**
+     * Method called when a search is made
+     * @param {*} values the search form values
+     */
+    handleSearchSubmit(event) {
+        // prevent default submit behavior
+        event.preventDefault();
+        // construct the fetch url
+        var searchUrl = this.createSearchUrl();
+        // fetch search results
+        this.props.fetchLostPetsInfo(1, searchUrl);
+    }
+
+    /**
+     * Method that creates and returns the fetch url for searching, provided the values
+     */
+    createSearchUrl() {
+        // get form values
+        var  colors = document.getElementById("colors_search").value;
+        var area = document.getElementById("area_search").value;
+        var petSpecies = document.getElementById("petSpecies_search").value;
+
+        // construct search url
+        var searchUrl = "";
+        if (colors!="")
+            searchUrl = searchUrl + "colors_like=" + colors + "&";
+        if (area!="")
+            searchUrl = searchUrl + "area_like=" + area + "&";
+        searchUrl = searchUrl + "species=" + petSpecies;
+
+        return searchUrl;
+
     }
 
     /**
@@ -144,13 +182,28 @@ class LostFound extends Component {
                             </Button>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-12">
-                            <ReactstrapForm>
-                                
-                            </ReactstrapForm>
+                    
+                        <ReactstrapForm className="row mt-2 mb-2" 
+                        onSubmit= {(event) => this.handleSearchSubmit(event)} >
+                        <div className="col-3">
+                                <Input type="text" className="form-control" 
+                                name = "area_search" defaultValue="" id="area_search" placeholder="Area ..."/>
                         </div>
-                    </div>
+                        <div className="col-3">
+                                <Input type="text" className="form-control" id="colors_search"
+                                name = "colors_search" defaultValue="" placeholder="Colors ..."/>
+                        </div>
+                        <div className="col-3">
+                            <PetSpeciesSelectBox elementId="petSpecies_search" />
+                        </div>
+                        <div className="col-3">
+                            <Button type="submit" color="primary">
+                                Search
+                            </Button>
+                        </div>
+
+                        </ReactstrapForm>
+                    
                     <Modal className="modal-lg" isOpen = {this.state.isPetModalOpen} toggle = {this.togglePetModal}>
                         <ModalHeader toggle = {this.togglePetModal}>
                             Submit pet info
@@ -223,7 +276,7 @@ class LostFound extends Component {
                                     </Col>
                                     <Label for="species" sm={2}>Species</Label>
                                     <Col sm={3}>
-                                        <PetSpeciesSelectBox formModel=".species" />
+                                        <PetSpeciesSelectBox formModel=".species" elementId="petSpecies" />
                                     </Col>
                                 </Row>
                                 <Row className="form-group">

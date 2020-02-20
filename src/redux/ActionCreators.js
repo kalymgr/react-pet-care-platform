@@ -58,13 +58,18 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
  * By default, it fetches the first page of data (first 10 results)
  * @param pageNumber The page of results fetched
  */
-export const fetchLostPetsInfo= (pageNumber = 1) => (dispatch) => {
+export const fetchLostPetsInfo= (pageNumber = 1, extraURLParams=null) => (dispatch) => {
     // show loading till data is fetched
     dispatch(lostPetsInfoLoading(true));
     let lastPageNumber = 1;  // initialize last page number
 
+    // construct the fetch url
+    let fetchUrl = baseUrl + 'lostpetsinfo' + '?_page=' + pageNumber + '&';
+    if (extraURLParams)  // if there are extra url params, add them to the url
+        fetchUrl = fetchUrl  + extraURLParams;
+
     // get the lost pets info from the json server
-    return fetch(baseUrl + 'lostpetsinfo' + '?_page=' + pageNumber)
+    return fetch(fetchUrl)
         .then(response => {
             if (response.ok) {  //  server responded ok 
                 lastPageNumber =  getLastPageNumberFromLinkHeader(response);  // set the last page number
@@ -111,10 +116,15 @@ const getLastPageNumberFromLinkHeader = (response) => {
     // get the link header
     let linkHeader = getResponseLinkHeader(response);
     // get the page number from the link header
-    let linksList = linkHeader.split(',');
-    let lastPageLink = linksList[linksList.length-1].split(';')[0];
-    let pageParameter = lastPageLink.split('?')[1].trim();
-    let pageNo = pageParameter.split('=')[1].substr(0,1);
+    
+    let pageNo = 1;  // initialize page number value
+    if (linkHeader != "") {  // if there is a link header
+        let linksList = linkHeader.split(',');
+        let lastPageLink = linksList[linksList.length-1].split(';')[0];
+        let pageParameter = lastPageLink.split('?')[1].trim();
+        pageNo = pageParameter.split('=')[1].substr(0,1);
+    }
+    
 
     return pageNo;
 }

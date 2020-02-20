@@ -10,12 +10,12 @@ import {Input} from 'reactstrap';
  * @param {*} formModel the redux form model (part of the props parameter), connected to the select box
  * @returns the component
  */
-export const PetSpeciesSelectBox = ({formModel}) =>
+export const PetSpeciesSelectBox = ({formModel, elementId}) =>
 {
     if (formModel)  // case the select box is connected to redux store
     {
         return (
-            <Control.select model={formModel} name="species" className="form-control">
+            <Control.select id={elementId} model={formModel} name="species" className="form-control">
                 <option>dog</option>
                 <option>cat</option>
                 <option>other</option>
@@ -24,7 +24,7 @@ export const PetSpeciesSelectBox = ({formModel}) =>
     }
     else {  // case the select box is NOT connected to redux store
         return (
-            <Input type="select" name="species" className="form-control">
+            <Input id={elementId} type="select" name="species" className="form-control">
                 <option>dog</option>
                 <option>cat</option>
                 <option>other</option>
