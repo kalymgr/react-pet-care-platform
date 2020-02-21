@@ -6,7 +6,7 @@ import LostFound from './LostFoundPets';
 import PetsForAdoption from './PetsForAdoptionComponent';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
-import { postSubmitLostPetsInfo, postSubmitPetForAdoptionInfo, fetchLostPetsInfo, fetchCounters } from '../redux/ActionCreators';
+import { postSubmitLostPetsInfo, postSubmitPetForAdoptionInfo, fetchLostPetsInfo, fetchPetsforadoption, fetchCounters } from '../redux/ActionCreators';
 import { PetDetails } from './PetDetailsComponent';
 
 /**
@@ -16,7 +16,7 @@ import { PetDetails } from './PetDetailsComponent';
 const mapStateToProps = state => {
     return {
         lostpetsinfo: state.lostpetsinfo,
-        counters: state.counters
+        petsforadoption: state.petsforadoption
     }
 }
 
@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
     resetPetForAdoptionInfo: () => { dispatch(actions.reset('submitPetsforadoption')) },
     postSubmitPetForAdoptionInfo: (petForAdoptionInfo) => { dispatch(postSubmitPetForAdoptionInfo(petForAdoptionInfo)) },
     fetchLostPetsInfo: (pageNumber, extraURLParams) => {dispatch(fetchLostPetsInfo(pageNumber, extraURLParams))},
-    // fetchCounters: () => {dispatch(fetchCounters())}
+    fetchPetsforadoption: (pageNumber, extraURLParams) => {dispatch(fetchPetsforadoption(pageNumber, extraURLParams))},
 })
 
 
@@ -38,7 +38,7 @@ class Main extends Component {
 
     componentDidMount() {
         this.props.fetchLostPetsInfo(1);  // fetch the first page of results (10 results)
-        // this.props.fetchCounters();
+        this.props.fetchPetsforadoption(1);  // fetch the first page of results (10 results)
     }
 
     render () {

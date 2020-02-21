@@ -53,6 +53,21 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
 
 
 /**
+ * Function that creates and returns the fetch url
+ * @param {*} path  // the basic path e.g. lostpetsinfo
+ * @param {*} pageNumber // the number of the page
+ * @param {*} extraURLParams  // extra url params
+ */
+const getFetchURL = (path, pageNumber, extraURLParams) => {
+    // construct the fetch url
+    let fetchUrl = baseUrl + path + '?_page=' + pageNumber + '&';
+    if (extraURLParams)  // if there are extra url params, add them to the url
+        fetchUrl = fetchUrl  + extraURLParams;
+    
+        return fetchUrl;
+}
+
+/**
  * Function that fetches the lost and found pets data from the json server. It updates the redux store
  * By default, it fetches the first page of data (first 10 results)
  * @param pageNumber The page of results fetched
@@ -63,9 +78,7 @@ export const fetchLostPetsInfo= (pageNumber = 1, extraURLParams=null) => (dispat
     let lastPageNumber = 1;  // initialize last page number
 
     // construct the fetch url
-    let fetchUrl = baseUrl + 'lostpetsinfo' + '?_page=' + pageNumber + '&';
-    if (extraURLParams)  // if there are extra url params, add them to the url
-        fetchUrl = fetchUrl  + extraURLParams;
+    var fetchUrl = getFetchURL('lostpetsinfo', pageNumber, extraURLParams);    
 
     // get the lost pets info from the json server
     return fetch(fetchUrl)
@@ -219,3 +232,61 @@ export const addPetForAdoption = (petForAdoption) => ({
     payload: petForAdoption
 })
 
+/**
+ * Function used while loading pets data
+ */
+export const petsForAdoptionInfoLoading = () => ({
+    type: ActionTypes.PETSFORADOPTIONINFO_LOADING
+})
+
+export const fetchPetsforadoption = (pageNumber=1, extraURLParams=null) => (dispatch) => {
+    // show loading till data is fetched
+    dispatch(petsForAdoptionInfoLoading(true));
+    let lastPageNumber = 1;  // initialize last page number
+
+    // construct the fetch url
+    var fetchUrl = getFetchURL('petsforadoption', pageNumber, extraURLParams);
+    
+    // get the pets for adoption, from the json server
+    return fetch(fetchUrl)
+        .then(response => {
+            if (response.ok) {  //  server responded ok 
+                lastPageNumber =  getLastPageNumberFromLinkHeader(response);  // set the last page number
+                return response;
+            }
+            else { // server responded with an error
+                var error = new Error('Error ' + response.status +': ' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {  // case the server hasn't responded
+            var errmess = new Error(error.message);
+            throw errmess;
+        }
+        ).then(response => response.json())
+        .then(petsForAdoptionInfo => dispatch(addPetsForAdoptionInfo(petsForAdoptionInfo, pageNumber, lastPageNumber)))  // update the redux store
+        .catch(error => dispatch(lostPetsInfoFailed(error.message)));
+}
+
+/**
+ * Function for updating the lost pets data in the redux store
+ * @param {*} petsForAdoptionInfo 
+ * @param {*} pageNumber 
+ * @param {*} lastPageNumber 
+ */
+export const addPetsForAdoptionInfo = (petsForAdoptionInfo, pageNumber, lastPageNumber) => ({
+    type: ActionTypes.ADD_PETSFORADOPTIONINFO,
+    payload: {
+        petsForAdoptionInfo, pageNumber, lastPageNumber
+    }
+})
+
+/**
+ * function for when data fetching of pets for adoption, failed
+ * @param {*} errmess 
+ */
+export const petsForAdoptionInfoFailed = (errmess) => ({
+    type: ActionTypes.PETSFORADOPTIONINFO_FAILED,
+    payload: errmess
+})
