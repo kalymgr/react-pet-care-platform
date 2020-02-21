@@ -15,3 +15,19 @@ export const InitialLostPetForm = {
     moreInfo: '',
     photo: ""
 }
+
+
+/**
+ * Initial data for the lost/found pet form
+ */
+export const InitialPetsForAdoptionForm = {
+    shelterOrOwner: "petOwner",
+    contactName: '',  // contact info
+    email: '',
+    petName: '',  //  pet info
+    species: 'dog',
+    colors: '',
+    age: '',
+    moreInfo: '',
+    photo: ""
+}   

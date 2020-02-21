@@ -93,8 +93,6 @@ class LostFound extends Component {
      * @param {*} values 
      */
     handleSubmit(values)  {
-        console.log('handleSubmit called');
-
         // save the data in the redux store
         this.props.postSubmitLostPetsInfo(values);
 

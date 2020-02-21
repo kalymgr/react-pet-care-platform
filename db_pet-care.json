@@ -1,5 +1,4 @@
 {
-  
   "lostpetsinfo": [
     {
       "petFoundOrLost": "petLost",
@@ -171,6 +170,44 @@
     }
   ],
   "petsforadoption": [
-    
+    {
+      "shelterOrOwner": "shelter",
+      "contactName": "Michalis",
+      "email": "mtsougranis@gmail.com",
+      "petName": "aris",
+      "species": "cat",
+      "colors": "white, black",
+      "age": "1",
+      "moreInfo": "Nice cat",
+      "photo": "/assets/images/petsforadoptionlacta.jpg",
+      "date": 1582281766653,
+      "id": 1
+    },
+    {
+      "shelterOrOwner": "petOwner",
+      "contactName": "evdoxia",
+      "email": "eva@gmail.com",
+      "petName": "leon",
+      "species": "cat",
+      "colors": "white, orange",
+      "age": "1",
+      "moreInfo": "very nice cat",
+      "photo": "",
+      "date": 1582281948049,
+      "id": 2
+    },
+    {
+      "shelterOrOwner": "petOwner",
+      "contactName": "stefanos",
+      "email": "stef@gmail.com",
+      "petName": "boubou",
+      "species": "cat",
+      "colors": "white, black",
+      "age": "1",
+      "moreInfo": "mew",
+      "photo": "/assets/images/petsforadoptionbugs.jpg",
+      "date": 1582282188073,
+      "id": 3
+    }
   ]
 }

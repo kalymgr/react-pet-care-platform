@@ -20,7 +20,6 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
         lostPetsInfo = Object.assign({}, {...lostPetsInfo, photo: petPhoto});
     }
     
-
     // send the data to the json server
     return fetch(baseUrl + 'lostPetsInfo', {
         method: 'POST',
@@ -169,3 +168,54 @@ export const addLostPet = (lostPet) => ({
     type: ActionTypes.ADD_LOSTPET,
     payload: lostPet
 })
+
+export const postSubmitPetForAdoptionInfo = (petForAdoptionInfo) => (dispatch) => {
+    // add to the object the date it is inserted in the json db
+    petForAdoptionInfo = Object.assign({}, {
+        ...petForAdoptionInfo, date: Date.now()
+    });
+
+    // add the path to the object photo
+    if (petForAdoptionInfo.photo) {  // case there is a photo
+        var petPhoto='/assets/images/petsforadoption' + petForAdoptionInfo.photo[0].name;
+        petForAdoptionInfo = Object.assign({}, {...petForAdoptionInfo, photo: petPhoto});
+    }
+
+    // send the data to the json server
+    return fetch(baseUrl + 'petsforadoption', {
+        method: 'POST',
+        body: JSON.stringify(petForAdoptionInfo),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin' 
+    })
+    .then(response => {
+        if (response.ok) {  // response ok
+            return response;
+        }
+        else { // server responded with error
+            var error = new Error('Error ' + response.status + ': ' + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    }, error => {  // server hasn't responded
+        throw error;
+    })  
+    .then(response => response.json())
+    .then(response => {
+        dispatch(addPetForAdoption(response));  // update the redux store
+    })
+    .catch (error => {
+        alert('Info about the pet could not be saved in our database\n' + error.message);
+    })
+}
+
+/**
+ * Function for adding a pet for adoption to the list of pets
+ */
+export const addPetForAdoption = (petForAdoption) => ({
+    type: ActionTypes.ADD_PETFORADOPTION,
+    payload: petForAdoption
+})
+
