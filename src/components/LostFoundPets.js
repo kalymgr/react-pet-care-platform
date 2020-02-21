@@ -231,7 +231,7 @@ class LostFound extends Component {
                     
                     <Modal className="modal-lg" isOpen = {this.state.isPetModalOpen} toggle = {this.togglePetModal}>
                         <ModalHeader toggle = {this.togglePetModal}>
-                            Submit pet info
+                            Submit info about lost/found pet
                         </ModalHeader>
                         <ModalBody>
                             <Form model="submitLostPetsInfo" onSubmit={(values) => this.handleSubmit(values)}>

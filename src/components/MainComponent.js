@@ -3,6 +3,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import LostFound from './LostFoundPets';
+import PetsForAdoption from './PetsForAdoptionComponent';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 import { postSubmitLostPetsInfo, fetchLostPetsInfo, fetchCounters } from '../redux/ActionCreators';
@@ -56,9 +57,19 @@ class Main extends Component {
                                 />
                             } 
                         />
+                        
                         /* Route for single pet */
                         <Route exact path = '/lostfoundpets/:petId' 
                             component = {({match}) => <PetDetails match={match} lostPetsInfo = {this.props.lostpetsinfo} />} />} 
+                        />
+                            
+                        /* Router for page for pets for adoption */
+                        <Route exact path='/petsforadoption' 
+                            component = {() => 
+                                <PetsForAdoption 
+                                    petsForAdoption = {this.props.petsforadoption}
+                                />
+                            } 
                         />
                     </Switch>
 

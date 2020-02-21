@@ -1,7 +1,5 @@
 {
-  "counters": {
-    "lostPetsCounter": 11
-  },
+  
   "lostpetsinfo": [
     {
       "petFoundOrLost": "petLost",
@@ -171,5 +169,8 @@
       "date": 1581919538039,
       "id": 31
     }
+  ],
+  "petsforadoption": [
+    
   ]
 }
