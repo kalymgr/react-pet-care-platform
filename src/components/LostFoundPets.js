@@ -105,6 +105,16 @@ class LostFound extends Component {
     }
 
     /**
+     * Method called when the search reset button is pressed
+     */
+    handleResetSubmit(event) {
+        // prevent default submit behavior
+        event.preventDefault();
+        // fetch search results
+        this.props.fetchLostPetsInfo(1);
+    }
+
+    /**
      * Method called when a search is made
      * @param {*} values the search form values
      */
@@ -132,7 +142,8 @@ class LostFound extends Component {
             searchUrl = searchUrl + "colors_like=" + colors + "&";
         if (area!="")
             searchUrl = searchUrl + "area_like=" + area + "&";
-        searchUrl = searchUrl + "species=" + petSpecies;
+        if (petSpecies!="")
+            searchUrl = searchUrl + "species=" + petSpecies;
 
         return searchUrl;
 
@@ -182,27 +193,41 @@ class LostFound extends Component {
                             </Button>
                         </div>
                     </div>
-                    
-                        <ReactstrapForm className="row mt-2 mb-2" 
+                    <div className="row">
+                        <ReactstrapForm className="col-md-10 mt-2 mb-2" 
                         onSubmit= {(event) => this.handleSearchSubmit(event)} >
-                        <div className="col-3">
-                                <Input type="text" className="form-control" 
-                                name = "area_search" defaultValue="" id="area_search" placeholder="Area ..."/>
-                        </div>
-                        <div className="col-3">
-                                <Input type="text" className="form-control" id="colors_search"
-                                name = "colors_search" defaultValue="" placeholder="Colors ..."/>
-                        </div>
-                        <div className="col-3">
-                            <PetSpeciesSelectBox elementId="petSpecies_search" />
-                        </div>
-                        <div className="col-3">
-                            <Button type="submit" color="primary">
-                                Search
-                            </Button>
-                        </div>
-
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <Input type="text" className="form-control" 
+                                    name = "area_search" defaultValue="" id="area_search" placeholder="Area ..."/>
+                                </div>
+                                <div className="col-md-3">
+                                    <Input type="text" className="form-control" id="colors_search"
+                                    name = "colors_search" defaultValue="" placeholder="Colors ..."/>
+                                </div>
+                                <div className="col-md-3">
+                                    <PetSpeciesSelectBox elementId="petSpecies_search" />
+                                </div>
+                                <div className="col-md-2">
+                                    <Button type="submit" value="search" name="search" color="primary">
+                                        Search
+                                    </Button>
+                                </div>
+                            </div>
                         </ReactstrapForm>
+                        <ReactstrapForm className="col-md-2 mt-2 mb-2" 
+                        onSubmit= {(event) => this.handleResetSubmit(event)} >
+                            <div className="row">
+                                <div className="col-md-12">
+                                <Button type="submit" value="reset" name="reset" color="secondary">
+                                    Reset
+                                </Button>
+                                </div>
+                            </div>
+                        </ReactstrapForm>
+                    </div>
+                        
+                       
                     
                     <Modal className="modal-lg" isOpen = {this.state.isPetModalOpen} toggle = {this.togglePetModal}>
                         <ModalHeader toggle = {this.togglePetModal}>

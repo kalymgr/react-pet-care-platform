@@ -16,6 +16,7 @@ export const PetSpeciesSelectBox = ({formModel, elementId}) =>
     {
         return (
             <Control.select id={elementId} model={formModel} name="species" className="form-control">
+                <option></option>
                 <option>dog</option>
                 <option>cat</option>
                 <option>other</option>
@@ -25,6 +26,7 @@ export const PetSpeciesSelectBox = ({formModel, elementId}) =>
     else {  // case the select box is NOT connected to redux store
         return (
             <Input id={elementId} type="select" name="species" className="form-control">
+                <option></option>
                 <option>dog</option>
                 <option>cat</option>
                 <option>other</option>
