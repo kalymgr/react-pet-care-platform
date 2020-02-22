@@ -79,6 +79,7 @@ class Main extends Component {
                             } 
                         />
                         /* Route for single pet for adoption */
+                        
                         <Route exact path = '/petsforadoption/:petId' 
                             component = {({match}) => <PetDetails match={match} pets = {this.props.petsforadoption} />} />} 
                         />
