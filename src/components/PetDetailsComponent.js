@@ -10,21 +10,33 @@ export const PetDetails = (props) => {
 
     let petId = parseInt(props.match.params.petId);  // get the pet id from the url params
 
-    if (props.lostPetsInfo.isLoading) {  // case data still loading
+    if (props.pets.isLoading) {  // case data still loading
         return ( <Loading /> )
     }
     else {  // case data done loading
+
+        // get the path of the parent url
+        var path = props.match.url;
+        var arr = path.split('/');
+        var parentURL = '/'+arr[1]+'/';
+        
         
         // get the specific pet
-        let pet = props.lostPetsInfo.lostPetsInfo.filter((pet => pet.id===petId))[0];
-
+        if (props.pets.lostPetsInfo){  // case showing info about a lost/found pet
+            var pet = props.pets.lostPetsInfo.filter((pet => pet.id===petId))[0];
+            var breacrumbText = "Lost/Found Pets";
+        }
+        else if (props.pets.petsForAdoption) {  // case showing info about a pet for adoption
+            var pet = props.pets.petsForAdoption.filter((pet => pet.id===petId))[0];
+            var breacrumbText = "Pets for adoption";
+        }
         // return the pet card
         return (
             <div className = "container">
                 <div className="row">
                     <Breadcrumb>
                     <BreadcrumbItem>
-                    <Link to="/lostfoundpets">Lost/Found Pets</Link>
+            <Link to={parentURL}>{breacrumbText}</Link>
                     </BreadcrumbItem>
                     <BreadcrumbItem active>
                         {pet.contactName}

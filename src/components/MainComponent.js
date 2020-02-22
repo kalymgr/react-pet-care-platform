@@ -60,9 +60,9 @@ class Main extends Component {
                             } 
                         />
                         
-                        /* Route for single pet */
+                        /* Route for single lost/found pet */
                         <Route exact path = '/lostfoundpets/:petId' 
-                            component = {({match}) => <PetDetails match={match} lostPetsInfo = {this.props.lostpetsinfo} />} />} 
+                            component = {({match}) => <PetDetails match={match} pets = {this.props.lostpetsinfo} />} />} 
                         />
                             
                         /* Router for page for pets for adoption */
@@ -74,6 +74,10 @@ class Main extends Component {
                                     resetPetForAdoptionInfo = {this.props.resetPetForAdoptionInfo}
                                 />
                             } 
+                        />
+                        /* Route for single pet for adoption */
+                        <Route exact path = '/petsforadoption/:petId' 
+                            component = {({match}) => <PetDetails match={match} pets = {this.props.petsforadoption} />} />} 
                         />
                     </Switch>
 
