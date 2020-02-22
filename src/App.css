@@ -37,3 +37,16 @@
   background-color: #2298ce;
   color: white; 
 }
+
+/* Jumbotron settings */
+.jumbotron {
+  margin-bottom: 0px;
+  padding: 1rem; }
+  .jumbotron h1 {
+    color: #2298ce; }
+  .jumbotron p {
+    color: #CE5922; }
+
+.navbar-dark {
+  background-color: #CE5922;
+  position: relative; }
