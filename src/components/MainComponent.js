@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 import { postSubmitLostPetsInfo, postSubmitPetForAdoptionInfo, fetchLostPetsInfo, fetchPetsforadoption, fetchCounters } from '../redux/ActionCreators';
 import { PetDetails } from './PetDetailsComponent';
+import {HomePage} from './HomePageComponent';
 
 /**
  * Mapping the state to the props
@@ -46,6 +47,10 @@ class Main extends Component {
             <div className = 'container'>
                 <Header />
                     <Switch location = { this.props.location }>
+
+                        /* Route for home component */
+                        <Route exact path='/home' component={HomePage} />
+
                         /* Route for page of lost and found pets */
                         <Route exact path='/lostfoundpets' 
                             component = {() => 
