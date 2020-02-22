@@ -179,7 +179,7 @@
       "colors": "white, black",
       "age": "1",
       "moreInfo": "Nice cat",
-      "photo": "/assets/images/petsforadoptionlacta.jpg",
+      "photo": "/assets/images/petsforadoption/lacta.jpg",
       "date": 1582281766653,
       "id": 1
     },
@@ -205,7 +205,7 @@
       "colors": "white, black",
       "age": "1",
       "moreInfo": "mew",
-      "photo": "/assets/images/petsforadoptionbugs.jpg",
+      "photo": "/assets/images/petsforadoption/bugs.jpg",
       "date": 1582282188073,
       "id": 3
     }

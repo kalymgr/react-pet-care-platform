@@ -190,7 +190,7 @@ export const postSubmitPetForAdoptionInfo = (petForAdoptionInfo) => (dispatch) =
 
     // add the path to the object photo
     if (petForAdoptionInfo.photo) {  // case there is a photo
-        var petPhoto='/assets/images/petsforadoption' + petForAdoptionInfo.photo[0].name;
+        var petPhoto='/assets/images/petsforadoption/' + petForAdoptionInfo.photo[0].name;
         petForAdoptionInfo = Object.assign({}, {...petForAdoptionInfo, photo: petPhoto});
     }
 

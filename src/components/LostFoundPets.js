@@ -6,9 +6,8 @@ import {Form as ReactstrapForm} from 'reactstrap';  // use alias so as not to co
 import * as formValidators from './formValidation';
 import { PetSpeciesSelectBox } from './petParamComponents';
 import { Loading } from './LoadingComponent';
-import {baseUrl} from '../shared/baseUrl';
 import { Pagination } from './PaginationComponent';
-
+import { PetList } from './PetInfoComponent';
 
  // Get the validators needed for the form
 var required = formValidators.required;
@@ -20,56 +19,6 @@ var greaterOrEqualTo = formValidators.greaterOrEqualTo;
 
 // get the component that shows the errors
 var myFormErrors  = formValidators.myFormErrors;
-
-
-/**
- * Functional component for showing a pet info
- */
-function PetInfo({pet}) {
-    return (
-        <Media key={pet.id}>
-            {
-                (() => {
-                    if (pet.photo) {
-                        return (<Media left><img with="100%" src = {baseUrl + pet.photo} alt={pet.name} /></Media>)
-                    }
-                    else {
-                        return (<Media left><img with="100%" src = {'assets/pet_photo_placeholder.jpg'} alt={pet.name} /></Media>)
-                    }
-                }
-                )()
-            }
-            
-            <Media body>
-                <Link to={`/lostfoundpets/${pet.id}`}>
-                <Media heading>Contact name: {pet.contactName}</Media>
-                </Link>
-                
-                <p>Species: {pet.species}</p>
-                <p>Colors: {pet.colors}</p>
-                <p>Date: {new Date(pet.date).toLocaleDateString('el-GR')}</p>
-            </Media>
-        </Media>
-    )
-}
-
-
-/**
- * Functional component that shows a list of lost/found pets
- * @param {*} props 
- */
-const PetList = (props) => {
-    const petList = props.lostPetsInfo.map((pet) => {
-        return (
-            <div key={pet.id} className="col-12 col-md-12 m-1">
-                <PetInfo pet={pet} />
-            </div>
-        )
-    });
-    return (
-        <div className="row">{petList}</div>
-    )
-}
 
 
 /**
@@ -386,7 +335,10 @@ class LostFound extends Component {
                         </ModalBody>
                     </Modal>
     
-                    <PetList lostPetsInfo={this.props.lostPetsInfo.lostPetsInfo} />
+                    <PetList 
+                        petsInfo={this.props.lostPetsInfo.lostPetsInfo} 
+                        petURL = {'/lostfoundpets/'}
+                    />
                     <Pagination 
                         getDataPage = {this.props.fetchLostPetsInfo}
                         pageNumber = {this.props.pageNumber}
