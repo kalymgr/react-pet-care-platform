@@ -72,6 +72,9 @@ class Main extends Component {
                                     petsForAdoption = {this.props.petsforadoption}
                                     postSubmitPetForAdoptionInfo ={this.props.postSubmitPetForAdoptionInfo}
                                     resetPetForAdoptionInfo = {this.props.resetPetForAdoptionInfo}
+                                    fetchPetsForAdoptionInfo = { this.props.fetchPetsforadoption }
+                                    pageNumber = {this.props.petsforadoption.pageNumber}
+                                    lastPageNumber = {this.props.petsforadoption.lastPageNumber}
                                 />
                             } 
                         />

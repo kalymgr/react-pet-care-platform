@@ -245,6 +245,12 @@ class PetsForAdoption extends Component {
                         petsInfo={this.props.petsForAdoption.petsForAdoption} 
                         petURL = {'/petsforadoption/'}
                         />
+
+                        <Pagination
+                            getDatapage = {this.props.fetchPetsForAdoptionInfo}
+                            pageNumber = {this.props.pageNumber}
+                            lastPageNumber = {this.props.lastPageNumber}
+                        />
            </div>
    
            )
