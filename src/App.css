@@ -50,3 +50,7 @@
 .navbar-dark {
   background-color: #CE5922;
   position: relative; }
+
+  /* Footer settings */
+#websiteFooter {
+  background-color: #84d1ec; }
