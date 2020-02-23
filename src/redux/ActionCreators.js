@@ -1,4 +1,4 @@
-import { baseUrl } from '../shared/baseUrl';
+import { jsonBaseUrl, baseUrl } from '../shared/baseUrl';
 import * as ActionTypes from './ActionTypes';
 
 
@@ -21,7 +21,7 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
     }
     
     // send the data to the json server
-    return fetch(baseUrl + 'lostPetsInfo', {
+    return fetch(jsonBaseUrl + 'lostPetsInfo', {
         method: 'POST',
         body: JSON.stringify(lostPetsInfo),
         headers: {
@@ -60,7 +60,7 @@ export const postSubmitLostPetsInfo = (lostPetsInfo) => (dispatch) => {
  */
 const getFetchURL = (path, pageNumber, extraURLParams) => {
     // construct the fetch url
-    let fetchUrl = baseUrl + path + '?_page=' + pageNumber + '&';
+    let fetchUrl = jsonBaseUrl + path + '?_page=' + pageNumber + '&';
     if (extraURLParams)  // if there are extra url params, add them to the url
         fetchUrl = fetchUrl  + extraURLParams;
     
@@ -195,7 +195,7 @@ export const postSubmitPetForAdoptionInfo = (petForAdoptionInfo) => (dispatch) =
     }
 
     // send the data to the json server
-    return fetch(baseUrl + 'petsforadoption', {
+    return fetch(jsonBaseUrl + 'petsforadoption', {
         method: 'POST',
         body: JSON.stringify(petForAdoptionInfo),
         headers: {
