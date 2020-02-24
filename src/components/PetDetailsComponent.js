@@ -51,7 +51,7 @@ export const PetDetails = (props) => {
                     <div className="col-12">
                     {(() => {
                         if (pet.photo) {
-                            return <CardImg top src={baseUrl + pet.photo} alt="pet.contactName" />
+                            return <CardImg top src={pet.photo} alt="pet.contactName" />
                         }
                     })()}
                     

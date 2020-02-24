@@ -30,10 +30,10 @@ export const PetInfo = ({pet, petURL}) => {
             {
                 (() => {
                     if (pet.photo) {
-                        return (<Media left><img with="100%" src = {baseUrl + pet.photo} alt={pet.name} /></Media>)
+                        return (<Media left><img with="100%" src = { pet.photo} alt={pet.name} /></Media>)
                     }
                     else {
-                        return (<Media left><img with="100%" src = {'assets/pet_photo_placeholder.jpg'} alt={pet.name} /></Media>)
+                        return (<Media left><img with="100%" src = {'/assets/pet_photo_placeholder.jpg'} alt={pet.name} /></Media>)
                     }
                 }
                 )()
